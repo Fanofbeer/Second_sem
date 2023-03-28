@@ -3,6 +3,7 @@
 //вычисляется по формуле y[i]=y[i-1] + y[i-3]^2, где i=3,4,...,m
 #include <iostream>;
 #include <locale.h>;
+#include <math.h>;
 using namespace std ;
 double recur1(int m, double y0, double y1, double y2) ;
 double recur2(int m, double y0, double y1, double y2) ;
@@ -53,14 +54,14 @@ double recur1(int m, double y0, double y1, double y2)
  sum += y1 * (i + 1.) / m ; i++ ;
  sum += y2 * (i + 1.) / m ; i++ ;
  while(i <= m)
-   {y = y2 + y0 * y0 ;
-    sum += y * (i + 1.) / m ;
+   {y = pow(sin(y2)+y0,2)+pow(cos(y0)-0.2*y1,2);
+    sum += y + (5*i/6);
     y0 = y1 ;
     y1 = y2 ;
     y2 = y ;
     i++ ;
    }
- return(0.1 * (m + 1) * sum) ;
+ return(0.1 * (m + 5) * sum) ;
 }
 //recur1_end_______________________________________________________________
 //recur2_beg_______________________________________________________________
@@ -73,15 +74,15 @@ double recur2(int m, double y0, double y1, double y2)
  sum += y1 * (i + 1.) / m ; i++ ;
  sum += y2 * (i + 1.) / m ; i++ ;
  do
-  {y = y2 + y0 * y0;
-   sum += y * (i + 1.) / m ;
+  {y = pow(sin(y2)+y0,2)+pow(cos(y0)-0.2*y1,2);
+    sum += y + (5*i/6);
    y0 = y1 ;
    y1 = y2 ;
    y2 = y ;
    i++ ;
   }
  while(i <= m) ;
- return(0.1 * (m + 1) * sum) ;
+ return(0.1 * (m + 5) * sum) ;
 }
 //recur2_end_______________________________________________________________
 //recur3_beg_______________________________________________________________
@@ -94,12 +95,12 @@ double recur3(int m, double y0, double y1, double y2)
  sum += y1 * (i + 1.) / m ; i++ ;
  sum += y2 * (i + 1.) / m ; i++ ;
  for(; i <= m; i++)
-    {y = y2 + y0 * y0 ;
-     sum += y * (i + 1.) / m ;
+    {y = pow(sin(y2)+y0,2)+pow(cos(y0)-0.2*y1,2);
+    sum += y + (5*i/6);
      y0 = y1 ;
      y1 = y2 ;
      y2 = y ;
     }
- return(0.1 * (m + 1) * sum) ;
+ return(0.1 * (m + 5) * sum) ;
 }
 //recur3_end______________________________________________________________
