@@ -10,10 +10,12 @@ double recur3(int m, double y0, double y1, double y2) ;
 //main_begin_______________________________________________________________
 int main()
 {
- setlocale(LC_ALL,"Russian") ;
+ //setlocale(LC_ALL,"Russian") ;
+ std:: system ("chcp 65001");
+
  int var, m ;
  double re1, re2, re3 ;		//результаты решения задачи
- double y0, y1, y2 ;		//исходные данные
+ double y0, y1, y2 ;		//исходнРые данные
 for(;;)
  {//Выбор действия
   cout << "\n  Вид действия:" << endl ;
