@@ -9,7 +9,7 @@ int main()
  float x, y,			//координаты точки
  s1, s2, s3, s4, s5 ;	//площади областей
  //setlocale(LC_ALL,"Russian") ;
-std:: system ("chcp 65001");
+ std:: system ("chcp 65001");
  cout << "\nВведите координаты точки: x, y " ;
  cin >> x >> y ;
  if((x-1)*(x-1)+(y-1)*(y-1)>1&&(x+1)*(x+1)+(y-1)*(y-1)>1&& x*x+(y-1)*(y-1)<1&&y>1)
