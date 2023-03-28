@@ -1,105 +1,49 @@
-//Пример 1.  Для произвольного значения m вычислить значение суммы заданного вида.
-//Значения m, y0, y1, y2 вводятся с клавиатуры. Значение yi
-//вычисляется по формуле y[i]=y[i-1] + y[i-3]^2, где i=3,4,...,m
-#include <iostream>;
-#include <locale.h>;
+#include<iostream>
+#include<math.h>
+#include<locale.h>
+#include<limits.h>
 using namespace std ;
-double recur1(int m, double y0, double y1, double y2) ;
-double recur2(int m, double y0, double y1, double y2) ;
-double recur3(int m, double y0, double y1, double y2) ;
-//main_begin_______________________________________________________________
 int main()
-{
+{int i = 0 ;			//номер области на рисунке
+ float x, y,			//координаты точки
+ s1, s2, s3, s4, s5 ;		//площади областей
  //setlocale(LC_ALL,"Russian") ;
- std:: system ("chcp 65001");
-
- int var, m ;
- double re1, re2, re3 ;		//результаты решения задачи
- double y0, y1, y2 ;		//исходнРые данные
-for(;;)
- {//Выбор действия
-  cout << "\n  Вид действия:" << endl ;
-  cout << " 1 - вычисление суммы по рекуррентной формуле" << endl ;
-  cout << " 2 - завершение задачи" << endl ;
-  cout << " Введите вид действия -> " ;
-  cin >> var ;
-  switch(var)
-      {case 1://Ввод исходных данных
-	    cout << " Введите m -> " ;
-	    cin >> m ;
-	    cout << " Введите y0, y1, y2 -> " ;
-	    cin >> y0 >> y1 >> y2 ;
-	    re1 = recur1(m, y0, y1, y2) ;
-	    re2 = recur2(m, y0, y1, y2) ;
-	    re3 = recur3(m, y0, y1, y2) ;
-//Вывод результата
-	    cout.precision(5) ;//число знаков после запятой при выводе
-	    cout << " Для цикла WHILE результат     = " << re1 << endl ;
-	    cout << " Для цикла DO..WHILE результат = " << re2 << endl ;
-	    cout << " Для цикла FOR результат       = " << re3 << endl ;
-	    break ;
-       default: return 0 ;
-      }//switch
- }//for
-}
-//main_end_________________________________________________________________
-//recur1_beg_______________________________________________________________
-//вычисление значения суммы циклом while
-double recur1(int m, double y0, double y1, double y2)
-{int   i = 0 ;			//текущий номер слагаемого
- double y ,				//очередное значение y[i]
-     sum = 0 ;			//начальное значение суммы
- sum += y0 * (i + 1.) / m ; i++ ;
- sum += y1 * (i + 1.) / m ; i++ ;
- sum += y2 * (i + 1.) / m ; i++ ;
- while(i <= m)
-   {y = y2 + y0 * y0 ;
-    sum += y * (i + 1.) / m ;
-    y0 = y1 ;
-    y1 = y2 ;
-    y2 = y ;
-    i++ ;
-   }
- return(0.1 * (m + 1) * sum) ;
-}
-//recur1_end_______________________________________________________________
-//recur2_beg_______________________________________________________________
-//вычисление значения суммы циклом do..while
-double recur2(int m, double y0, double y1, double y2)
-{int   i = 0 ;			//текущий номер слагаемого
- double y ,				//очередное значение y[i]
-     sum = 0 ;			//начальное значение суммы
- sum += y0 * (i + 1.) / m ; i++ ;
- sum += y1 * (i + 1.) / m ; i++ ;
- sum += y2 * (i + 1.) / m ; i++ ;
- do
-  {y = y2 + y0 * y0;
-   sum += y * (i + 1.) / m ;
-   y0 = y1 ;
-   y1 = y2 ;
-   y2 = y ;
-   i++ ;
-  }
- while(i <= m) ;
- return(0.1 * (m + 1) * sum) ;
-}
-//recur2_end_______________________________________________________________
-//recur3_beg_______________________________________________________________
-//вычисление значения суммы циклом for
-double recur3(int m, double y0, double y1, double y2)
-{int   i = 0 ;			//текущий номер слагаемого
- double y ,				//очередное значение y[i]
-     sum = 0 ;			//начальное значение суммы
- sum += y0 * (i + 1.) / m ; i++ ;
- sum += y1 * (i + 1.) / m ; i++ ;
- sum += y2 * (i + 1.) / m ; i++ ;
- for(; i <= m; i++)
-    {y = y2 + y0 * y0 ;
-     sum += y * (i + 1.) / m ;
-     y0 = y1 ;
-     y1 = y2 ;
-     y2 = y ;
+std:: system ("chcp 65001");
+ cout << "\nВведите координаты точки: x, y " ;
+ cin >> x >> y ;
+ if(y > 0 && y < 2 && x > 1 && x < 2 && (x - 1) * (x - 1) + y * y >1)
+ {cout << "Точка в области M1. " ; i = 1 ;
+ }
+ else if(x > -2 && y < 1 && x < -1 && y > 0 &&
+        (x + 1) * (x + 1) + y * y > 1)
+      {cout << "Точка в области М2. " ; i = 2 ;
+      }
+      else if((x+1) * (x+1) + y * y < 1 && x * x + y * y < 1 && y > 0)
+	      {cout << "Точка в области М3. " ; i = 3 ;
+	      }
+	   else if(x * x + y * y > 1 && (x - 1) * (x - 1) + y * y < 1 &&
+		      x * x + (y + 1) * (y + 1) < 1)
+		   {cout << "Точка в области М4. " ; i = 4 ;
+		   }
+		else if(y < -1 && y > -2 && x < 0 && x > -1 &&
+			   x * x + (y + 1) * (y + 1) > 1)
+		     {cout << "Точка в области М5. " ; i = 5 ;
+		     }
+		     else cout << "Точка вне выделенных областей" ;
+ cout.precision(4);		//число знаков после дес. точки
+ switch(i)
+    {case 1: cout << "S1 = " << (s1 = 2 - M_PI / 4) ;
+	        break ;
+     case 2: cout << "S2 = " << (s2 = 1 - M_PI / 4) ;
+	        break ;
+     case 3: cout << "S3 = " << (s3 = M_PI/3 - sqrt(3)/4) ;
+	        break ;
+     case 4: cout << "S4 = " << (s4 = sqrt(3)/2 + M_PI/3 - M_PI/4-1) ;
+	        break ;
+     case 5: cout << "S5 = " << (s5 = 1 - M_PI / 4) ;
     }
- return(0.1 * (m + 1) * sum) ;
+ cout << "\n Повторить-1, Выход-2: " ;
+ cin >> i ;
+ if (i == 1) main() ;
+return 0 ;
 }
-//recur3_end______________________________________________________________
