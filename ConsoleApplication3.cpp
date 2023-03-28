@@ -1,6 +1,4 @@
-//Пример 1.  Для произвольного значения m вычислить значение суммы заданного вида.
-//Значения m, y0, y1, y2 вводятся с клавиатуры. Значение yi
-//вычисляется по формуле y[i]=y[i-1] + y[i-3]^2, где i=3,4,...,m
+//Вариант 40
 #include <iostream>
 #include <locale.h>
 #include <math.h>
@@ -13,7 +11,6 @@ int main()
 {
  //setlocale(LC_ALL,"Russian") ;
  std:: system ("chcp 65001");
-
  int var, m ;
  double re1, re2, re3 ;		//результаты решения задачи
  double y0, y1, y2 ;		//исходнРые данные
@@ -61,7 +58,7 @@ double recur1(int m, double y0, double y1, double y2)
     y2 = y ;
     i++ ;
    }
- return(0.1 * (m + 5) * sum) ;
+ return((0.1 * m + 5) * sum) ;
 }
 //recur1_end_______________________________________________________________
 //recur2_beg_______________________________________________________________
@@ -82,7 +79,7 @@ double recur2(int m, double y0, double y1, double y2)
    i++ ;
   }
  while(i <= m) ;
- return(0.1 * (m + 5) * sum) ;
+ return((0.1 * m + 5) * sum) ;
 }
 //recur2_end_______________________________________________________________
 //recur3_beg_______________________________________________________________
@@ -101,6 +98,6 @@ double recur3(int m, double y0, double y1, double y2)
      y1 = y2 ;
      y2 = y ;
     }
- return(0.1 * (m + 5) * sum) ;
+ return((0.1 * m + 5) * sum) ;
 }
 //recur3_end______________________________________________________________

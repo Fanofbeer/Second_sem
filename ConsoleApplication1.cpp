@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿//Вариант 40
+#include <iostream>
 
 int main()
 {
