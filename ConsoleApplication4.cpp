@@ -8,6 +8,7 @@ typedef int telem ;		//определение типа значений элем
 typedef telem tmas[RAZ] ;	//определение типа массива
 int nomer_min(const tmas, int) ;
 int nomer_otr(const tmas, int) ;
+int product_otr(tmas,int,int);
 void inputmas(tmas, int) ;
 void outputmas(const tmas, int) ;
 void obrabotka_mas(tmas, int, int ,int) ;
@@ -18,9 +19,10 @@ int main()
     std:: system ("chcp 65001");
     tmas  a;		//массив
     int   m,		//половина размера массива
-        i_otr,		//индекс первого отрицательного элемента >m
+        i_otr,		//индекс первого отрицательного элемента <m
         i_min,		//индекс наименьшего неотрицательного элемента
-          i;		//ответ в диалоге
+          i,		//ответ в диалоге
+        prod;
     //Ввод исходных данных
     cout << "\n Введете половину размера массива <= " << RAZ / 2 << " : ";
     cin >> m;
@@ -42,7 +44,7 @@ int main()
     if (i_min == -1)
     {
         cout << "\n Неотрицательных значений у элементов массива нет" << endl;
-        cout << " Массив не изменялся." << endl;
+        //cout << " Массив не изменялся." << endl;
         cout << "\n Повторить-1, Выход-2: ";
         cin >> i;
         if (i == 1) main();
@@ -53,17 +55,20 @@ int main()
     if (i_otr == -1)
     {
         cout << "\n Отрицательных значений у элементов массива";
-        cout << " с индексами >=" << m << " нет" << endl;
-        cout << " Массив не изменялся.";
+        cout << " с индексами <" << m << " нет" << endl;
+        //cout << " Массив не изменялся.";
         cout << "\n Повторить-1, Выход-2: ";
         cin >> i;
         if (i == 1) main();
         return 0;
     }
     cout << " Индекс первого отр. элемента >=" << m << " = " << i_otr << endl;
-    obrabotka_mas(a, 2 * m, i_min, i_otr);
-    cout << " Измененный массив:" << endl;
-    outputmas(a, 2 * m);
+    prod=product_otr(a,i_otr,i_min);
+    cout << " Произведение отрицательных элементов равна" << prod << endl;
+    
+    //obrabotka_mas(a, 2 * m, i_min, i_otr);
+    //cout << " Измененный массив:" << endl;
+    //outputmas(a, 2 * m);
     cout << "\n Повторить-1, Выход-2: ";
     cin >> i;
     if (i == 1) main();
@@ -91,8 +96,8 @@ int nomer_min(const tmas a, int n)
 int nomer_otr(const tmas a, int m)
 {int iotr ;		//индекс первого отрицательного элемента
      iotr = -1 ;	//факт отсутствия отрицательного элемента
-//Ищем первый отрицательный элемент с индексом >m
- for(int i = m ; i < 2 * m ; i++)
+//Ищем первый отрицательный элемент с индексом <m
+ for(int i = 0 ; i < m ; i++)
     if(a[i] < 0)
       {iotr = i ;
        break ;
@@ -135,4 +140,20 @@ void obrabotka_mas(tmas a, int n, int i_min, int i_otr)
  for(i = i_end ; i < n ; i++)	//инвертируем знак у остальных
     a[i] = -a[i] ;
 }
+
 //obrabotka_mas_end_______________________________________________________
+int product_otr(tmas a, int min_otr,int min_pos)
+{int prod ;		//Произведение
+     prod = 1 ;
+if (min_otr<min_pos)
+ {for(int i = min_otr ; i < min_pos ; i++)
+    if(a[i] < 0)
+      {prod *= a[i] ;
+      }}
+  else
+ {for(int i = min_otr ; i < min_pos ; i++)
+    if(a[i] < 0)
+      {prod *= a[i] ;
+      }}
+ return prod ;
+}
