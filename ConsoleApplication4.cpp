@@ -11,11 +11,9 @@ int nomer_otr(const tmas, int) ;
 int product_otr(tmas,int,int);
 void inputmas(tmas, int) ;
 void outputmas(const tmas, int) ;
-void obrabotka_mas(tmas, int, int ,int) ;
 //main_begin_______________________________________________________________
 int main()
 {
-    //setlocale(LC_ALL, "Russian");
     std:: system ("chcp 65001");
     tmas  a;		//массив
     int   m,		//половина размера массива
@@ -44,7 +42,6 @@ int main()
     if (i_min == -1)
     {
         cout << "\n Неотрицательных значений у элементов массива нет" << endl;
-        //cout << " Массив не изменялся." << endl;
         cout << "\n Повторить-1, Выход-2: ";
         cin >> i;
         if (i == 1) main();
@@ -56,7 +53,6 @@ int main()
     {
         cout << "\n Отрицательных значений у элементов массива";
         cout << " с индексами <" << m << " нет" << endl;
-        //cout << " Массив не изменялся.";
         cout << "\n Повторить-1, Выход-2: ";
         cin >> i;
         if (i == 1) main();
@@ -65,10 +61,6 @@ int main()
     cout << " Индекс первого отр. элемента >=" << m << " = " << i_otr << endl;
     prod=product_otr(a,i_otr,i_min);
     cout << " Произведение отрицательных элементов равна" << prod << endl;
-    
-    //obrabotka_mas(a, 2 * m, i_min, i_otr);
-    //cout << " Измененный массив:" << endl;
-    //outputmas(a, 2 * m);
     cout << "\n Повторить-1, Выход-2: ";
     cin >> i;
     if (i == 1) main();
@@ -121,39 +113,18 @@ void outputmas(const tmas a, int n)
    }
 }
 //outputmas_end____________________________________________________________
-//obrabotka_mas_begin______________________________________________________
-void obrabotka_mas(tmas a, int n, int i_min, int i_otr)
-{int i_beg,		//начало интервала
-     i_end,		//конец интервала
-     i ;		//текущий номер элемента
- if(i_min < i_otr)
-   {i_beg = i_min + 1 ;
-    i_end = i_otr ;
-   }
- else{i_beg = i_otr + 1 ;
-      i_end = i_min ;
-     }
- for(i = i_beg ; i < i_end ; i++)	//удваиваем значения внутри интервала
-    a[i] *= 2 ;
- for(i = 0 ; i < i_beg ; i++)	//инвертируем знак у остальных
-    a[i] = -a[i] ;
- for(i = i_end ; i < n ; i++)	//инвертируем знак у остальных
-    a[i] = -a[i] ;
-}
-
-//obrabotka_mas_end_______________________________________________________
 int product_otr(tmas a, int min_otr,int min_pos)
 {int prod ;		//Произведение
      prod = 1 ;
 if (min_otr<min_pos)
- {for(int i = min_otr ; i < min_pos ; i++)
+ for(int i = min_otr ; i < min_pos ; i++)
     if(a[i] < 0)
       {prod *= a[i] ;
-      }}
+      }
   else
- {for(int i = min_otr ; i < min_pos ; i++)
+ for(int i = min_otr ; i < min_pos ; i++)
     if(a[i] < 0)
       {prod *= a[i] ;
-      }}
+      }
  return prod ;
 }
