@@ -30,15 +30,15 @@ int main()
 		     else cout << "Точка вне выделенных областей" ;
  cout.precision(4);		//число знаков после дес. точки
  switch(i)
-    {case 1: cout << "S1 = " << (s1 = 2 - M_PI / 4) ;
+    {case 1: cout << "S1 = " << (s1 = sqrt(3)/2-M_PI/6) ;
 	        break ;
-     case 2: cout << "S2 = " << (s2 = 1 - M_PI / 4) ;
+     case 2: cout << "S2 = " << (s2 =M_PI / 4) ;
 	        break ;
-     case 3: cout << "S3 = " << (s3 = M_PI/3 - sqrt(3)/4) ;
+     case 3: cout << "S3 = " << (s3 = M_PI / 4) ;
 	        break ;
-     case 4: cout << "S4 = " << (s4 = sqrt(3)/2 + M_PI/3 - M_PI/4-1) ;
+     case 4: cout << "S4 = " << (s4 = sqrt(3)/2-M_PI/6) ;
 	        break ;
-     case 5: cout << "S5 = " << (s5 = 1 - M_PI / 4) ;
+     case 5: cout << "S5 = " << (s5 = M_PI/4+sqrt(3)/2-M_PI/6) ;
     }
  cout << "\n Повторить-1, Выход-2: " ;
  cin >> i ;
